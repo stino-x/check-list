@@ -151,7 +151,7 @@ npm start
 
 - GitHub: [@githubhandle](https://github.com/sylvester-wamaya)
 
-- LinkedIn: [LinkedIn](https://www.linkedin.com/in/iheagwara-Augustine/)
+- LinkedIn: [LinkedIn](https://www.linkedin.com/in/augustine-iheagwara-644b11228/)
 
 
 
