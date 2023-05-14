@@ -1,4 +1,4 @@
-import AddToScreen from './script.js';
+import AddToScreen from '../index.js';
 import { saveTaskstoLocalStorage } from './AddtoLocalStorage.js';
 
 let activityArray = [];
