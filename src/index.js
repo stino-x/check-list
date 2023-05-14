@@ -1,8 +1,5 @@
-// import { cLearALL, handleCheckboxchange } from './Modules/checkbox.js';
-// import DeleteTask from './Modules/Delete.js';
 import './style.css';
 import reFreshPage from './Modules/refresh.js';
-// import { AddtoLocalStorage, saveTaskstoLocalStorage } from './Modules/AddtoLocalStorage.js';
 
 const inputArea = document.querySelector('#input');
 const Form = document.querySelector('form');
@@ -94,7 +91,6 @@ const changeHTMLforEdit = (e) => {
     input.classList.add('input-edit');
     input.value = activityArray[taskId].description;
     const trashIcon = document.createElement('box-icon');
-    // trashIcon.addEventListener('click', deLete); // event listener
     trashIcon.setAttribute('name', 'trash-alt');
     trashIcon.setAttribute('type', 'solid');
     trashIcon.classList.add('trash');
@@ -181,7 +177,6 @@ const DeleteTask = (e) => {
   if (e.target.classList.contains('trash')) {
     const listItem = e.target.parentNode.parentNode;
     const taskIndex = listItem.getAttribute('id');
-    // const taskIndex = Array.from(listItem.parentNode.children).indexOf(listItem) - 1;
     activityArray.splice(taskIndex, 1);
     reIndex();
     saveTaskstoLocalStorage();
@@ -213,7 +208,6 @@ const EditTask = (e) => {
   const index = parent.getAttribute('id');
   if (e.key === 'Enter' && e.target.classList.contains('input-edit')) {
     const newDescription = e.target.value;
-    // editTask(newDescription, index);
     activityArray[index].description = newDescription;
     saveTaskstoLocalStorage();
     parent.innerHTML = `
