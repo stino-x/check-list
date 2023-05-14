@@ -204,16 +204,7 @@ const cLearALL = () => {
   AddToScreen();
 };
 clearAll.addEventListener('click', cLearALL);
-// refresh function
-// const reFreshPage = (e) => {
-//   if (e.target.classList.contains('refresh')) {
-//     reFresh.setAttribute('animation', 'spin');
-//     window.location.reload();
-//     window.addEventListener('load', () => {
-//       reFresh.setTimeout(() => reFresh.classList.remove('animation'), 4500);
-//     });
-//   }
-// };
+
 document.addEventListener('click', reFreshPage);
 
 // editing text in task
@@ -237,6 +228,3 @@ const EditTask = (e) => {
   }
 };
 activitySection.addEventListener('keypress', EditTask);
-// MyConstructor();
-// AddtoLocalStorage();
-// saveTaskstoLocalStorage(); // AddToScreen();
