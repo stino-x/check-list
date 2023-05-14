@@ -1,5 +1,5 @@
 import { saveTaskstoLocalStorage } from './AddtoLocalStorage.js';
-import AddToScreen from './script.js';
+import AddToScreen from '../index.js';
 
 let activityArray = [];
 export const handleCheckboxchange = (event) => {
