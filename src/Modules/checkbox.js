@@ -1,31 +1,33 @@
-import { saveTaskstoLocalStorage } from './AddtoLocalStorage.js';
-import AddToScreen from './script.js';
+import {
+  ActivityArray, AddToScreen, saveTaskstoLocalStorage, setActivityArray,
+} from './AddtoLocalStorage.js';
 
-let activityArray = [];
 export const handleCheckboxchange = (event) => {
   const checkbox = event.target;
-  const listItem = checkbox.parentNode.parentNode;
-  const taskId = listItem.getAttribute('id');
-  activityArray[taskId].completed = checkbox.checked;
-  saveTaskstoLocalStorage();
-  if (checkbox.checked) {
-    listItem.querySelector('.text').classList.add('completed');
-  } else {
-    listItem.querySelector('.text').classList.remove('completed');
+  if (checkbox.type === 'checkbox') {
+    const listItem = checkbox.closest('li');
+    const taskId = listItem.getAttribute('id');
+    ActivityArray()[taskId].completed = checkbox.checked;
+    saveTaskstoLocalStorage();
+    if (checkbox.checked) {
+      listItem.querySelector('.text').classList.add('completed');
+    } else {
+      listItem.querySelector('.text').classList.remove('completed');
+    }
+    saveTaskstoLocalStorage();
   }
-  saveTaskstoLocalStorage();
 };
 
 //   activitleCheckboxchange);
 //   activiteTask);
 // deleting all checked tasks
 export const deleteCheckedTasks = () => {
-  activityArray = activityArray.filter((MyConstructor) => !MyConstructor.completed);
+  setActivityArray(ActivityArray().filter((MyConstructor) => !MyConstructor.completed));
   saveTaskstoLocalStorage();
   AddToScreen();
 };
 export const reIndex = () => {
-  activityArray.forEach((task, index) => {
+  ActivityArray().forEach((task, index) => {
     task.index = index + 1;
   });
 };
@@ -36,4 +38,21 @@ export const cLearALL = () => {
   saveTaskstoLocalStorage();
   AddToScreen();
 };
+
+const loadActivityArrayFromLocalStorage = () => {
+  const activityArrayString = localStorage.getItem('activities');
+  if (activityArrayString) {
+    return JSON.parse(activityArrayString);
+  }
+  return [];
+};
+
+const activityArray1 = loadActivityArrayFromLocalStorage();
+
+activityArray1.forEach((task, index) => {
+  const listItem = document.getElementById(index);
+  if (task.completed) {
+    listItem.querySelector('.text').classList.add('completed');
+  }
+});
 //   ALL);

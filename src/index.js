@@ -1,33 +1,29 @@
 import './style.css';
+import reFreshPage from './Modules/refresh.js';
+import { EditTask, changeHTMLforEdit } from './Modules/edit.js';
+import { clickToAddNewTask, submitForm } from './Modules/AddtoLocalStorage.js';
+import { cLearALL, handleCheckboxchange } from './Modules/checkbox.js';
+import DeleteTask from './Modules/Delete.js';
 
-const activityList = document.querySelector('#activity-list');
-const activityArray = [{
-  description: 'Go to the gym',
-  completed: false,
-  Index: 0,
-}, {
-  description: 'Study',
-  completed: true,
-  Index: 1,
-}, {
-  description: 'Cook',
-  completed: false,
-  Index: 2,
-}, {
-  description: 'Suceed',
-  completed: true,
-  Index: 3,
-}, {
-  description: 'Travel',
-  completed: false,
-  Index: 4,
-}];
-window.addEventListener('load', () => {
-  let content = '';
-  activityArray.forEach((activity, index) => {
-    content += `<li class="section" id="${index}">
-        <span class="activity td"><input type="checkbox" name="" class="check-box" ${activity.completed ? 'checked' : ''}><span>${activity.description}</span><i class="fa-solid fa-ellipsis-vertical"></i></span>
-    </li>`;
-    activityList.innerHTML = content;
-  });
-});
+export const inputArea = document.querySelector('#input');
+const Form = document.querySelector('form');
+const clearAll = document.querySelector('button');
+
+const enter = document.querySelector('#enter');
+export const activitySection = document.querySelector('#activity-list');
+
+activitySection.addEventListener('dblclick', changeHTMLforEdit);
+
+Form.addEventListener('submit', submitForm);
+
+enter.addEventListener('dblclick', clickToAddNewTask);
+
+activitySection.addEventListener('change', handleCheckboxchange);
+
+activitySection.addEventListener('click', DeleteTask);
+
+clearAll.addEventListener('click', cLearALL);
+
+document.addEventListener('click', reFreshPage);
+
+activitySection.addEventListener('keypress', EditTask);
