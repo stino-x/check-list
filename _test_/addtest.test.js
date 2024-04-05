@@ -1,10 +1,8 @@
-import {
-  AddtoLocalStorage,
-  DeleteTask,
-  saveTaskstoLocalStorage,
-  ActivityArray,
-} from '../src/index.js';
+import { ActivityArray, AddtoLocalStorage, saveTaskstoLocalStorage } from '../src/Modules/AddtoLocalStorage.js';
+import { inputArea } from '../src/index.js';
+import DeleteTask from '../src/Modules/Delete.js';
 
+jest.mock('../src/style.css', () => ({}));
 // Mock localStorage
 const localStorageMock = (() => {
   let store = {};
@@ -31,22 +29,21 @@ describe('AddtoLocalStorage', () => {
   });
 
   test('should add a task to ActivityArray1 and localStorage', () => {
-    const description = 'New Task';
-    const completed = false;
-    const index = 1;
+    inputArea.value = 'New Task';
 
-    AddtoLocalStorage(description, completed, index);
+    AddtoLocalStorage();
+    saveTaskstoLocalStorage();
 
     expect(ActivityArray1.length).toBe(1);
-    expect(ActivityArray1[0].description).toBe(description);
-    expect(ActivityArray1[0].completed).toBe(completed);
-    expect(ActivityArray1[0].index).toBe(index);
+    expect(ActivityArray1[0].description).toBe('New Task');
+    expect(ActivityArray1[0].completed).toBe(false);
+    expect(ActivityArray1[0].index).toBe(ActivityArray1.length);
 
     const storedData = JSON.parse(localStorage.getItem('activities'));
     expect(storedData.length).toBe(1);
-    expect(storedData[0].description).toBe(description);
-    expect(storedData[0].completed).toBe(completed);
-    expect(storedData[0].index).toBe(index);
+    expect(storedData[0].description).toBe('New Task');
+    expect(storedData[0].completed).toBe(false);
+    expect(storedData[0].index).toBe(ActivityArray1.length);
   });
 });
 

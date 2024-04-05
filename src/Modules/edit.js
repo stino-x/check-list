@@ -9,13 +9,17 @@ export const changeHTMLforEdit = (e) => {
     listItem.classList.add('edit');
     const taskId = listItem.getAttribute('id');
     // Create the edit form HTML
-    const span = document.createElement('span');
-    span.classList.add('activity');
-    const input = document.createElement('input');
+    const span = listItem.querySelector('.activity');
+    // span.classList.add('activity');
+    const input = listItem.querySelector('input');
     input.focus();
     input.type = 'text';
     input.classList.add('input-edit');
     input.value = ActivityArray()[taskId].description;
+    const elipse = listItem.querySelector('i');
+    elipse.remove();
+    const text = listItem.querySelector('.text');
+    text.remove();
     const trashIcon = document.createElement('box-icon');
     // trashIcon.addEventListener('click', deLete); // event listener
     trashIcon.setAttribute('name', 'trash-alt');
@@ -24,7 +28,6 @@ export const changeHTMLforEdit = (e) => {
     span.appendChild(input);
     span.appendChild(trashIcon);
     // Replace the existing HTML with the edit form HTML
-    listItem.innerHTML = '';
     listItem.appendChild(span);
     listItem.querySelector('.input-edit').setAttribute('id', `input-edit-${index}`);
   }

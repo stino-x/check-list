@@ -6,7 +6,7 @@ import { cLearALL, handleCheckboxchange } from './Modules/checkbox.js';
 import DeleteTask from './Modules/Delete.js';
 
 export const inputArea = document.querySelector('#input');
-const Form = document.querySelector('form');
+export const Form = document.querySelector('form');
 const clearAll = document.querySelector('button');
 
 const enter = document.querySelector('#enter');
